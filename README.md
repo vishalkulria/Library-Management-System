@@ -37,6 +37,7 @@ A comprehensive Java-based Library Management System with a Swing GUI. This appl
 ## Prerequisites
 
 - Java Development Kit (JDK) 8 or higher
+- Maven 3.6 or higher
 - Git (for cloning the repository)
 
 ## Installation & Setup
@@ -47,23 +48,70 @@ git clone https://github.com/vishalkulria/Library-Management-System.git
 cd Library-Management-System
 ```
 
-### Compile the Project
+### Build with Maven
 ```bash
-javac LibraryManagementSystem.java
+# Clean and build the project
+mvn clean package
+
+# This will create a JAR file in the target directory
+# JAR file: target/library-management-system-1.0.0-shaded.jar
 ```
 
 ### Run the Application
+
+#### Using Maven
 ```bash
-java LibraryManagementSystem
+mvn exec:java -Dexec.mainClass="com.library.ui.LibraryManagementSystem"
+```
+
+#### Using compiled JAR
+```bash
+java -jar target/library-management-system-1.0.0-shaded.jar
+```
+
+### Compile (without Maven)
+```bash
+javac src/main/java/com/library/model/*.java
+javac src/main/java/com/library/ui/*.java
+```
+
+### Run Tests
+```bash
+mvn test
+```
+
+### Generate JAR with Assembly
+```bash
+mvn assembly:assembly -DdescriptorId=jar-with-dependencies
 ```
 
 ## Project Structure
 
 ```
 Library-Management-System/
-├── LibraryManagementSystem.java    # Main application file
-├── .gitignore                      # Git ignore file
-└── README.md                       # Project documentation
+├── pom.xml                              # Maven configuration file
+├── .gitignore                           # Git ignore file
+├── README.md                            # Project documentation
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── library/
+│   │   │           ├── model/
+│   │   │           │   ├── Book.java           # Book model class
+│   │   │           │   ├── Student.java        # Student model class
+│   │   │           │   └── IssuedBook.java     # IssuedBook model class
+│   │   │           └── ui/
+│   │   │               └── LibraryManagementSystem.java  # Main GUI class
+│   │   └── resources/                   # Resource files
+│   └── test/
+│       └── java/
+│           └── com/
+│               └── library/
+│                   └── model/
+│                       └── BookTest.java       # Unit tests
+└── target/
+    └── library-management-system-1.0.0-shaded.jar   # Generated JAR
 ```
 
 ## Classes Overview
