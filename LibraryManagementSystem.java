@@ -424,7 +424,7 @@ public class LibraryManagementSystem extends JFrame {
                 }
 
                 String studentName = (String) issuedTableModel.getValueAt(selectedRow, 0);
-                String bookTitle = (String) issuedTableModel.getValueAt(selectedRow, 2);
+                String bookTitle = (String) issuedTableModel.getValueAt(selectedRow, 1);
                 
                 for (Student student : students) {
                     if (student.name.equals(studentName)) {
